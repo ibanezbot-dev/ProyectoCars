@@ -1,0 +1,9 @@
+# Archivos compilados y Javadoc de Maven
+target/
+
+# Configuraciones locales de IDE
+nb-configuration.xml
+nbactions.xml
+.vscode/
+.idea/
+*.iml

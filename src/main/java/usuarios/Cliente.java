@@ -1,0 +1,39 @@
+package usuarios;
+/**
+ * Contrato público para los clientes que pueden realizar rentas de go karts.
+ * 
+ * @author ibane
+ */
+public interface Cliente {
+    
+    /**
+     * Obtiene el identificador único del cliente.
+     * @return identificador del cliente
+     */
+    String getId();
+
+    /**
+     * Obtiene el nombre completo del cliente.
+     * @return nombre del cliente
+     */
+    String getNombre();
+
+    /**
+     * Obtiene la cantidad máxima de horas permitidas por kart para este cliente.
+     * @return máximo de horas permitidas
+     */
+    int getMaxHoras();
+
+    /**
+     * Obtiene el porcentaje de descuento aplicable al cliente en formato decimal
+     * @return porcentaje de descuento en formato decimal
+     */
+    double getPorcentajeDescuento();
+
+    /**
+     * Calcula el monto de descuento correspondiente a un subtotal dado.
+     * @param subtotal costo base de la renta antes de descuento
+     * @return monto del descuento calculado
+     */
+    double calcularDescuento(double subtotal);
+}
