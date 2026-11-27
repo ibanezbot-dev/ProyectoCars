@@ -12,18 +12,30 @@ public class Socio extends Usuario {
 
     /**
      * Crea un nuevo socio con su identificador y nombre.
+     *
      * @param id     identificador único del socio
      * @param nombre nombre del socio
+     * @throws IllegalArgumentException si el id o el nombre son nulos o están en blanco
      */
     public Socio(String id, String nombre) {
         super(id, nombre);
     }
 
+    /**
+     * Devuelve el máximo de horas por kart permitido para un socio.
+     *
+     * @return {@code 2}
+     */
     @Override
     public int getMaxHoras() {
         return MAX_HORAS;
     }
 
+    /**
+     * Devuelve el porcentaje de descuento aplicable a un socio.
+     *
+     * @return {@code 0.10} (10%)
+     */
     @Override
     public double getPorcentajeDescuento() {
         return PORCENTAJE_DESCUENTO;

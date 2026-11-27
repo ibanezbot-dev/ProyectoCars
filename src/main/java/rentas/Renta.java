@@ -5,10 +5,11 @@ import java.util.Map;
 import karts.KartRentable;
 import usuarios.Cliente;
 /**
- * @author ibane
  * Representa una renta de go karts realizada por un cliente. Compone sus
  * propios objetos {@link DetalleRenta} y delega el cálculo de descuento
  * al polimorfismo de {@link Cliente}.
+ *
+ * @author ibane
  */
 public class Renta {
     

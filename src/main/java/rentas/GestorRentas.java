@@ -87,12 +87,27 @@ public class GestorRentas {
         return new ArrayList<>(rentas);
     }
 
+    /**
+     * Valida que el cliente proporcionado para la renta no sea nulo.
+     *
+     * @param cliente cliente a validar
+     * @throws IllegalArgumentException si el cliente es nulo
+     */
     private void validarCliente(Cliente cliente) {
         if (cliente == null) {
             throw new IllegalArgumentException("El cliente no puede ser nulo para crear una renta.");
         }
     }
 
+    /**
+     * Valida la cantidad de karts, sus horas permitidas para el cliente, la
+     * ausencia de números repetidos y que todos los karts estén libres.
+     *
+     * @param cliente       cliente titular de la renta
+     * @param kartsConHoras mapa de karts seleccionados y sus horas solicitadas
+     * @throws IllegalArgumentException si la selección o las horas incumplen las reglas
+     * @throws IllegalStateException    si algún kart seleccionado ya está en uso
+     */
     private void validarKartsYHoras(Cliente cliente, Map<KartRentable, Integer> kartsConHoras) {
         if (kartsConHoras == null || kartsConHoras.size() < MIN_KARTS || kartsConHoras.size() > MAX_KARTS) {
             throw new IllegalArgumentException("Una renta debe incluir entre " + MIN_KARTS + " y " + MAX_KARTS + " karts.");
@@ -123,6 +138,12 @@ public class GestorRentas {
         }
     }
 
+    /**
+     * Busca una renta registrada a partir de su número consecutivo.
+     *
+     * @param numeroRenta número identificador de la renta
+     * @return la renta encontrada o {@code null} si no existe
+     */
     private Renta buscarRentaPorNumero(int numeroRenta) {
         for (Renta renta : rentas) {
             if (renta.getNumeroRenta() == numeroRenta) {

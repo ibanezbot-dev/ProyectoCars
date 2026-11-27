@@ -9,9 +9,16 @@ import usuarios.Cliente;
  * @author ibane
  */
 public class Recibo {
-    
+
+    /**
+     * Crea una nueva instancia del generador de recibos.
+     */
+    public Recibo() {
+    }
+
     /**
      * Construye el texto completo del recibo correspondiente a la renta dada.
+     *
      * @param renta renta de la cual se generará el comprobante
      * @return texto formateado del recibo
      * @throws IllegalArgumentException si la renta es nula

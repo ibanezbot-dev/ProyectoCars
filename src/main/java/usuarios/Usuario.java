@@ -28,11 +28,21 @@ public abstract class Usuario implements Cliente {
         this.nombre = nombre.trim();
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return identificador único normalizado del usuario
+     */
     @Override
     public String getId() {
         return id;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return nombre normalizado del usuario
+     */
     @Override
     public String getNombre() {
         return nombre;
@@ -41,6 +51,7 @@ public abstract class Usuario implements Cliente {
     /**
      * Calcula el descuento aplicable al subtotal usando el porcentaje definido
      * por cada subclase concreta.
+     *
      * @param subtotal monto base antes de descuento
      * @return monto del descuento a aplicar
      * @throws IllegalArgumentException si el subtotal es negativo
@@ -53,9 +64,19 @@ public abstract class Usuario implements Cliente {
         return subtotal * getPorcentajeDescuento();
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return cantidad máxima de horas permitidas por kart
+     */
     @Override
     public abstract int getMaxHoras();
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return porcentaje de descuento en formato decimal
+     */
     @Override
     public abstract double getPorcentajeDescuento();
 }

@@ -2,8 +2,8 @@ package usuarios;
 import java.util.List;
 import java.util.ArrayList;
 /**
- * Implementación en memoria de {@link RepositorioClientes} con visibilidad
- * restringida al paquete {@code usuarios}.
+ * Implementación en memoria de {@code RepositorioClientes} cuyo constructor
+ * tiene visibilidad restringida al paquete {@code usuarios}.
  *
  * @author ibane
  */
@@ -17,6 +17,12 @@ public class RepositorioClientesMemoria implements RepositorioClientes {
         clientes = new ArrayList<>();
     }
 
+    /**
+     * Almacena un cliente en la colección en memoria.
+     *
+     * @param cliente cliente a guardar
+     * @throws IllegalArgumentException si el cliente es nulo
+     */
     @Override
     public void guardar(Cliente cliente) {
         if (cliente == null) {
@@ -26,6 +32,13 @@ public class RepositorioClientesMemoria implements RepositorioClientes {
         clientes.add(cliente);
     }
 
+    /**
+     * Busca un cliente por su identificador aplicando normalización de espacios.
+     *
+     * @param id identificador del cliente a buscar
+     * @return el cliente encontrado o {@code null} si el ID es nulo, está vacío
+     *         o no existe en el repositorio
+     */
     @Override
     public Cliente buscar(String id) {
         if (id == null || id.trim().isEmpty()) {
@@ -40,11 +53,22 @@ public class RepositorioClientesMemoria implements RepositorioClientes {
         return null;
     }
 
+    /**
+     * Verifica si existe un cliente registrado con el identificador indicado.
+     *
+     * @param id identificador a comprobar
+     * @return {@code true} si existe un cliente con ese ID; {@code false} en caso contrario
+     */
     @Override
     public boolean existe(String id) {
         return buscar(id) != null;
     }
 
+    /**
+     * Devuelve una copia defensiva con todos los clientes almacenados en memoria.
+     *
+     * @return nueva lista con los clientes registrados
+     */
     @Override
     public List<Cliente> obtenerTodos() {
         return new ArrayList<>(clientes);
