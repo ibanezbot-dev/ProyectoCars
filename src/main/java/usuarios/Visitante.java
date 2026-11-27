@@ -12,18 +12,30 @@ public class Visitante extends Usuario {
 
     /**
      * Crea un nuevo visitante con su identificador y nombre.
+     *
      * @param id     identificador único del visitante
      * @param nombre nombre del visitante
+     * @throws IllegalArgumentException si el id o el nombre son nulos o están en blanco
      */
     public Visitante(String id, String nombre) {
         super(id, nombre);
     }
 
+    /**
+     * Devuelve el máximo de horas por kart permitido para un visitante.
+     *
+     * @return {@code 1}
+     */
     @Override
     public int getMaxHoras() {
         return MAX_HORAS;
     }
 
+    /**
+     * Devuelve el porcentaje de descuento aplicable a un visitante.
+     *
+     * @return {@code 0.0} (sin descuento)
+     */
     @Override
     public double getPorcentajeDescuento() {
         return PORCENTAJE_DESCUENTO;

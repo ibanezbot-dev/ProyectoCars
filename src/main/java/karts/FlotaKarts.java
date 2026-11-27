@@ -80,6 +80,12 @@ public class FlotaKarts {
         return disponibles;
     }
 
+    /**
+     * Verifica si ya existe en la flota un kart con el número especificado.
+     *
+     * @param numero número identificador a comprobar
+     * @return {@code true} si ya está registrado; {@code false} en caso contrario
+     */
     private boolean existeNumero(int numero) {
         for (KartRentable kart : karts) {
             if (kart.getNumero() == numero) {

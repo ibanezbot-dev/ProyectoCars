@@ -11,7 +11,9 @@ interface RepositorioClientes {
     
     /**
      * Almacena un cliente en el repositorio.
+     *
      * @param cliente cliente a guardar
+     * @throws IllegalArgumentException si el cliente es nulo
      */
     void guardar(Cliente cliente);
 

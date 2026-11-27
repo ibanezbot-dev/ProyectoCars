@@ -2,10 +2,10 @@ package usuarios;
 import java.util.ArrayList;
 import java.util.List;
 /**
-* Gestiona el alta y consulta de clientes del sistema de renta de go karts.
-*
-* @author ibane
-*/
+ * Gestiona el alta y consulta de clientes del sistema de renta de go karts.
+ *
+ * @author ibane
+ */
 public class RegistroUsuarios {
     
     private final RepositorioClientes repositorio;
