@@ -123,6 +123,34 @@ public class FlotaKartsTest {
     }
 
     /**
+     * Comprueba que no se acepten karts nulos ni con número no positivo.
+     */
+    @Test
+    public void debeRechazarKartNuloONumeroInvalido() {
+        // Given: un kart nulo y un doble con número cero
+
+        // When y Then: ambos intentos son rechazados con IllegalArgumentException
+        assertThrows(IllegalArgumentException.class,
+                () -> flota.agregarKart(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> flota.agregarKart(new KartRentableDoble(0)));
+    }
+
+    /**
+     * Comprueba que buscar por un número no positivo lance excepción.
+     */
+    @Test
+    public void debeRechazarBusquedaConNumeroNoPositivo() {
+        // Given: números de búsqueda inválidos
+
+        // When y Then: cero y negativos lanzan IllegalArgumentException
+        assertThrows(IllegalArgumentException.class,
+                () -> flota.buscarPorNumero(0));
+        assertThrows(IllegalArgumentException.class,
+                () -> flota.buscarPorNumero(-3));
+    }
+
+    /**
      * Doble de prueba que implementa el contrato público KartRentable.
      */
     private static class KartRentableDoble implements KartRentable {

@@ -100,6 +100,44 @@ public class RegistroUsuariosTest {
     }
 
     /**
+     * Comprueba las validaciones de parámetros nulos o vacíos en el registro.
+     */
+    @Test
+    public void debeRechazarParametrosInvalidosEnRegistroYBusqueda() {
+        // Given: entradas nulas o en blanco
+
+        // When y Then: constructor, alta y búsqueda rechazan datos inválidos
+        assertThrows(IllegalArgumentException.class,
+                () -> new RegistroUsuarios(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> registro.registrar(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> registro.buscarPorId(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> registro.buscarPorId("   "));
+    }
+
+    /**
+     * Comprueba el funcionamiento de RegistroUsuarios con el repositorio en memoria por defecto.
+     */
+    @Test
+    public void debeOperarConRepositorioEnMemoriaPorDefecto() {
+        // Given: un registro construido con su repositorio en memoria por defecto
+        RegistroUsuarios registroReal = new RegistroUsuarios();
+        Socio socio = new Socio("S-40", "Elena");
+
+        // When: se registra y se busca con espacios alrededor del ID
+        registroReal.registrar(socio);
+        Cliente encontrado = registroReal.buscarPorId("  S-40  ");
+
+        // Then: se recupera el cliente y se rechazan duplicados
+        assertEquals(socio, encontrado);
+        assertEquals(1, registroReal.listarClientes().size());
+        assertThrows(IllegalStateException.class,
+                () -> registroReal.registrar(new Visitante("S-40", "Duplicado")));
+    }
+
+    /**
      * Doble de prueba del repositorio en memoria usado para aislar las pruebas.
      */
     private static class RepositorioClientesDoble implements RepositorioClientes {
