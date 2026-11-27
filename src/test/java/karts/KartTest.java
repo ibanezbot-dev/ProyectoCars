@@ -69,12 +69,14 @@ public class KartTest {
      */
     @Test
     public void debeRechazarNumeroNoPositivo() {
-        // Given: se intenta crear un kart con número cero
+        // Given: se intenta crear un kart con número cero o negativo
 
         // When: se invoca el constructor
         // Then: se lanza una excepción con información clara
         assertThrows(IllegalArgumentException.class,
                 () -> new KartInfantil(0));
+        assertThrows(IllegalArgumentException.class,
+                () -> new KartAdulto(-5));
     }
 
     /**
@@ -94,7 +96,7 @@ public class KartTest {
     }
 
     /**
-     * Comprueba que liberar un kart ocupadolo lo vuelva disponible.
+     * Comprueba que liberar un kart ocupado lo vuelva disponible.
      */
     @Test
     public void debePoderLiberarUnKartEnUso() {
@@ -107,5 +109,30 @@ public class KartTest {
         // Then: vuelve a estar disponible
         assertTrue(adulto.estaLibre());
         assertEquals("Libre", adulto.getEstado());
+    }
+
+    /**
+     * Comprueba que no se pueda ocupar un kart que ya está en uso.
+     */
+    @Test
+    public void debeRechazarOcuparKartYaEnUso() {
+        // Given: un kart que ya se encuentra ocupado
+        doble.ocupar();
+
+        // When y Then: intentar ocuparlo nuevamente lanza IllegalStateException
+        assertThrows(IllegalStateException.class,
+                () -> doble.ocupar());
+    }
+
+    /**
+     * Comprueba que no se pueda liberar un kart que ya está libre.
+     */
+    @Test
+    public void debeRechazarLiberarKartYaLibre() {
+        // Given: un kart en estado libre
+
+        // When y Then: intentar liberarlo lanza IllegalStateException
+        assertThrows(IllegalStateException.class,
+                () -> infantil.liberar());
     }
 }

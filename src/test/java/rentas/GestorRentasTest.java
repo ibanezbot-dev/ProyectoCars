@@ -1,6 +1,7 @@
 package rentas;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import karts.KartAdulto;
 import karts.KartDoble;
@@ -154,7 +155,7 @@ public class GestorRentasTest {
      */
     @Test
     public void debeUsarDobleDeCliente() {
-        // Given: un cliente falso que permite dos horas sin descuento
+        // Given: un cliente falso que permite dos horas con diez por ciento de descuento
         ClienteDoble cliente = new ClienteDoble();
         KartAdulto kart = new KartAdulto(10);
         Map<KartRentable, Integer> seleccion = new HashMap<>();
@@ -166,6 +167,125 @@ public class GestorRentasTest {
         // Then: se respeta el doble y se registra la renta
         assertEquals(600.0, renta.calcularSubtotal(), 0.001);
         assertEquals(540.0, renta.calcularTotal(), 0.001);
+    }
+
+    /**
+     * Comprueba la creación y finalización de una renta con múltiples karts.
+     */
+    @Test
+    public void debeCrearYFinalizarRentaConMultiplesKarts() {
+        // Given: un socio que selecciona tres karts de distinto tipo
+        Socio socio = new Socio("S-6", "Diana");
+        KartInfantil infantil = new KartInfantil(11);
+        KartAdulto adulto = new KartAdulto(12);
+        KartDoble doble = new KartDoble(13);
+        Map<KartRentable, Integer> seleccion = new HashMap<>();
+        seleccion.put(infantil, 2);
+        seleccion.put(adulto, 1);
+        seleccion.put(doble, 2);
+
+        // When: se crea la renta
+        Renta renta = gestor.crearRenta(socio, seleccion);
+
+        // Then: el cálculo suma todos los karts (400 + 300 + 800 = 1500) y los ocupa
+        assertEquals(3, renta.getDetalles().size());
+        assertEquals(1500.0, renta.calcularSubtotal(), 0.001);
+        assertEquals(150.0, renta.calcularDescuento(), 0.001);
+        assertEquals(1350.0, renta.calcularTotal(), 0.001);
+        assertFalse(infantil.estaLibre());
+        assertFalse(adulto.estaLibre());
+        assertFalse(doble.estaLibre());
+
+        // When: se finaliza la renta
+        gestor.finalizarRenta(renta.getNumeroRenta());
+
+        // Then: todos los karts vuelven a quedar libres
+        assertTrue(infantil.estaLibre());
+        assertTrue(adulto.estaLibre());
+        assertTrue(doble.estaLibre());
+    }
+
+    /**
+     * Comprueba el rechazo de parámetros nulos, selección vacía, horas inválidas y karts con número repetido.
+     */
+    @Test
+    public void debeRechazarParametrosInvalidosAlCrearRenta() {
+        // Given: selecciones y parámetros con distintos tipos de error
+        Socio socio = new Socio("S-7", "Raúl");
+        Map<KartRentable, Integer> valida = new HashMap<>();
+        valida.put(new KartAdulto(14), 1);
+
+        Map<KartRentable, Integer> vacia = new HashMap<>();
+
+        Map<KartRentable, Integer> conKartNulo = new HashMap<>();
+        conKartNulo.put(null, 1);
+
+        Map<KartRentable, Integer> conHorasNulas = new HashMap<>();
+        conHorasNulas.put(new KartAdulto(15), null);
+
+        Map<KartRentable, Integer> conCeroHoras = new HashMap<>();
+        conCeroHoras.put(new KartAdulto(16), 0);
+
+        Map<KartRentable, Integer> conNumeroRepetido = new HashMap<>();
+        conNumeroRepetido.put(new KartAdulto(17), 1);
+        conNumeroRepetido.put(new KartInfantil(17), 1);
+
+        // When y Then: cada caso inválido lanza IllegalArgumentException sin alterar el contador
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.crearRenta(null, valida));
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.crearRenta(socio, null));
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.crearRenta(socio, vacia));
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.crearRenta(socio, conKartNulo));
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.crearRenta(socio, conHorasNulas));
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.crearRenta(socio, conCeroHoras));
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.crearRenta(socio, conNumeroRepetido));
+        assertEquals(0, gestor.getTotalRentas());
+    }
+
+    /**
+     * Comprueba los errores al finalizar una renta inexistente, con número inválido o ya finalizada.
+     */
+    @Test
+    public void debeRechazarFinalizacionInvalidaORepetida() {
+        // Given: una renta ya finalizada
+        Map<KartRentable, Integer> seleccion = new HashMap<>();
+        seleccion.put(new KartAdulto(18), 1);
+        Renta renta = gestor.crearRenta(new Visitante("V-4", "Nora"), seleccion);
+        gestor.finalizarRenta(renta.getNumeroRenta());
+
+        // When y Then: números inválidos o inexistentes lanzan IllegalArgumentException
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.finalizarRenta(0));
+        assertThrows(IllegalArgumentException.class,
+                () -> gestor.finalizarRenta(999));
+
+        // When y Then: finalizar por segunda vez lanza IllegalStateException
+        assertThrows(IllegalStateException.class,
+                () -> gestor.finalizarRenta(renta.getNumeroRenta()));
+    }
+
+    /**
+     * Comprueba que listarRentas devuelva una copia defensiva.
+     */
+    @Test
+    public void debeDevolverCopiaDefensivaDeRentas() {
+        // Given: un gestor con una renta registrada
+        Map<KartRentable, Integer> seleccion = new HashMap<>();
+        seleccion.put(new KartInfantil(19), 1);
+        gestor.crearRenta(new Visitante("V-5", "Mario"), seleccion);
+        List<Renta> copia = gestor.listarRentas();
+
+        // When: se modifica la lista devuelta
+        copia.clear();
+
+        // Then: el historial interno del gestor permanece intacto
+        assertEquals(1, gestor.listarRentas().size());
     }
 
     /**
