@@ -30,6 +30,7 @@ ProyectoCars/
 ├── README.md
 └── src/
     ├── main/java/
+    │   ├── app/
     │   ├── karts/
     │   ├── usuarios/
     │   └── rentas/
@@ -42,6 +43,13 @@ ProyectoCars/
 ---
 
 ## Descripción de clases de producción (`src/main/java`)
+
+### Paquete `app`
+Punto de entrada de consola para interactuar con el sistema o ejecutar una demostración completa (`package-info.java`).
+
+| Clase | Tipo | Descripción |
+| --- | --- | --- |
+| `Main` | Clase | Aplicación de consola con menú interactivo (gestionar flota, registrar clientes, crear/finalizar rentas, imprimir recibos e historial) y modo `--demo` para ejecutar una demostración automática del flujo completo. |
 
 ### Paquete `karts`
 Modela los distintos tipos de go karts, sus tarifas, estados de disponibilidad y la administración de la flota (`package-info.java`).
@@ -98,6 +106,16 @@ La suite cuenta con **7 clases de prueba** y **41 pruebas unitarias** en JUnit 4
 
 ## Comandos útiles
 
+### Ejecutar la aplicación de consola
+```bash
+mvn compile
+java -cp target/classes app.Main
+```
+Para ejecutar directamente la demostración automática sin menú interactivo:
+```bash
+java -cp target/classes app.Main --demo
+```
+
 ### Ejecutar todas las pruebas
 ```bash
 mvn clean test
@@ -105,6 +123,6 @@ mvn clean test
 
 ### Generar documentación Javadoc
 ```bash
-javadoc -d target/site/apidocs -sourcepath src/main/java -subpackages karts:rentas:usuarios -encoding UTF-8 -charset UTF-8 -Xdoclint:all
+javadoc -d target/site/apidocs -sourcepath src/main/java -subpackages app:karts:rentas:usuarios -encoding UTF-8 -charset UTF-8 -Xdoclint:all
 ```
 La documentación generada se guarda en `target/site/apidocs/index.html`.
