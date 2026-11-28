@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Si tus compañeros usan JDK 17 o 21, cambia 25 por esa versión -->
+        <!-- Si tus companeros usan JDK 17 o 21, cambia 25 por esa version -->
         <maven.compiler.release>25</maven.compiler.release>
     </properties>
 

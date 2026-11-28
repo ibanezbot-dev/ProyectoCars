@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Pruebas unitarias de la generación de recibos.
+ * Pruebas unitarias de la generacion de recibos.
  *
  * @author marcial
  */
@@ -32,7 +32,7 @@ public class ReciboTest {
     }
 
     /**
-     * Libera el generador después de cada prueba.
+     * Libera el generador despues de cada prueba.
      */
     @After
     public void tearDown() {
@@ -91,7 +91,7 @@ public class ReciboTest {
         // Given: no existe una renta
 
         // When: se solicita generar el recibo
-        // Then: se lanza una excepción clara
+        // Then: se lanza una excepcion clara
         assertThrows(IllegalArgumentException.class,
                 () -> recibo.generar(null));
     }

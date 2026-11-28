@@ -21,7 +21,7 @@ public class RepositorioClientesMemoriaTest {
     private RepositorioClientesMemoria repositorio;
 
     /**
-     * Inicializa un repositorio vacío antes de cada prueba.
+     * Inicializa un repositorio vacio antes de cada prueba.
      */
     @Before
     public void setUp() {
@@ -42,7 +42,7 @@ public class RepositorioClientesMemoriaTest {
     @Test
     public void debeGuardarBuscarYVerificarExistencia() {
         // Given: un socio guardado en memoria
-        Socio socio = new Socio("S-100", "Sofía");
+        Socio socio = new Socio("S-100", "Sofia");
         repositorio.guardar(socio);
 
         // When: se consulta existencia y se busca con y sin espacios
@@ -57,14 +57,14 @@ public class RepositorioClientesMemoriaTest {
     }
 
     /**
-     * Comprueba que buscar con ID nulo o vacío devuelva null sin fallar.
+     * Comprueba que buscar con ID nulo o vacio devuelva null sin fallar.
      */
     @Test
     public void debeDevolverNullAlBuscarIdNuloOBlanco() {
         // Given: un repositorio con un cliente registrado
         repositorio.guardar(new Visitante("V-100", "Hugo"));
 
-        // When y Then: las búsquedas con ID nulo o vacío devuelven null
+        // When y Then: las busquedas con ID nulo o vacio devuelven null
         assertNull(repositorio.buscar(null));
         assertNull(repositorio.buscar("   "));
         assertFalse(repositorio.existe(null));
@@ -88,7 +88,7 @@ public class RepositorioClientesMemoriaTest {
     @Test
     public void debeDevolverCopiaDefensivaEnObtenerTodos() {
         // Given: un repositorio con un visitante
-        repositorio.guardar(new Visitante("V-101", "Lucía"));
+        repositorio.guardar(new Visitante("V-101", "Lucia"));
         List<Cliente> copia = repositorio.obtenerTodos();
 
         // When: se limpia la lista obtenida

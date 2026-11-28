@@ -1,7 +1,7 @@
 package karts;
 
 /**
- * Clase base abstracta que centraliza el número identificador y el control
+ * Clase base abstracta que centraliza el numero identificador y el control
  * de disponibilidad de todos los tipos de go karts.
  *
  * @author ibane
@@ -15,15 +15,15 @@ public abstract class Kart implements KartRentable {
     private boolean libre;
 
     /**
-     * Construye un kart inicialmente libre validando que su número sea positivo.
+     * Construye un kart inicialmente libre validando que su numero sea positivo.
      *
-     * @param numero número identificador del kart (debe ser mayor que cero)
-     * @throws IllegalArgumentException si el número es menor o igual a cero
+     * @param numero numero identificador del kart (debe ser mayor que cero)
+     * @throws IllegalArgumentException si el numero es menor o igual a cero
      */
     protected Kart(int numero) {
         if (numero <= 0) {
             throw new IllegalArgumentException(
-                    "El número del kart debe ser un entero positivo.");
+                    "El numero del kart debe ser un entero positivo.");
         }
         this.numero = numero;
         libre = true;
@@ -32,7 +32,7 @@ public abstract class Kart implements KartRentable {
     /**
      * {@inheritDoc}
      *
-     * @return número identificador del kart
+     * @return numero identificador del kart
      */
     @Override
     public int getNumero() {
@@ -42,7 +42,7 @@ public abstract class Kart implements KartRentable {
     /**
      * {@inheritDoc}
      *
-     * @return {@code "Libre"} si está disponible o {@code "En uso"} si está ocupado
+     * @return {@code "Libre"} si esta disponible o {@code "En uso"} si esta ocupado
      */
     @Override
     public String getEstado() {
@@ -55,7 +55,7 @@ public abstract class Kart implements KartRentable {
     /**
      * {@inheritDoc}
      *
-     * @return {@code true} si el kart está disponible; {@code false} si está en uso
+     * @return {@code true} si el kart esta disponible; {@code false} si esta en uso
      */
     @Override
     public boolean estaLibre() {
@@ -71,7 +71,7 @@ public abstract class Kart implements KartRentable {
     public void ocupar() {
         if (!libre) {
             throw new IllegalStateException(
-                    "El kart número " + numero + " ya se encuentra en uso.");
+                    "El kart numero " + numero + " ya se encuentra en uso.");
         }
         libre = false;
     }
@@ -85,7 +85,7 @@ public abstract class Kart implements KartRentable {
     public void liberar() {
         if (libre) {
             throw new IllegalStateException(
-                    "El kart número " + numero + " ya se encuentra libre.");
+                    "El kart numero " + numero + " ya se encuentra libre.");
         }
         libre = true;
     }

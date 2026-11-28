@@ -1,6 +1,6 @@
 package karts;
 /**
- * Contrato público para los go karts que pueden ser consultados y rentados
+ * Contrato publico para los go karts que pueden ser consultados y rentados
  * desde otros paquetes del sistema.
  * 
  * @author ibane 
@@ -8,16 +8,16 @@ package karts;
 public interface KartRentable {
     
     /**
-     * Obtiene el número identificador único del kart.
+     * Obtiene el numero identificador unico del kart.
      *
-     * @return número del kart
+     * @return numero del kart
      */
     int getNumero();
 
     /**
      * Obtiene el nombre del tipo de kart (Infantil, Adulto o Doble).
      *
-     * @return descripción del tipo de kart
+     * @return descripcion del tipo de kart
      */
     String getTipo();
 
@@ -29,7 +29,7 @@ public interface KartRentable {
     double getTarifaPorHora();
 
     /**
-     * Obtiene la representación textual del estado actual del kart
+     * Obtiene la representacion textual del estado actual del kart
      * ("Libre" o "En uso").
      *
      * @return estado actual del kart
@@ -39,7 +39,7 @@ public interface KartRentable {
     /**
      * Indica si el kart se encuentra disponible para ser rentado.
      *
-     * @return {@code true} si está libre, {@code false} si está en uso
+     * @return {@code true} si esta libre, {@code false} si esta en uso
      */
     boolean estaLibre();
 

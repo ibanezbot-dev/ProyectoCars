@@ -11,7 +11,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 
 /**
- * Pruebas unitarias de la administración de la flota de karts.
+ * Pruebas unitarias de la administracion de la flota de karts.
  *
  * @author marcial
  */
@@ -20,7 +20,7 @@ public class FlotaKartsTest {
     private FlotaKarts flota;
 
     /**
-     * Inicializa una flota vacía antes de cada prueba.
+     * Inicializa una flota vacia antes de cada prueba.
      */
     @Before
     public void setUp() {
@@ -36,7 +36,7 @@ public class FlotaKartsTest {
     }
 
     /**
-     * Comprueba el alta y la búsqueda de karts en la flota.
+     * Comprueba el alta y la busqueda de karts en la flota.
      */
     @Test
     public void debeAgregarYBuscarKartPorNumero() {
@@ -44,7 +44,7 @@ public class FlotaKartsTest {
         KartAdulto kart = new KartAdulto(10);
         flota.agregarKart(kart);
 
-        // When: se busca por su número
+        // When: se busca por su numero
         KartRentable encontrado = flota.buscarPorNumero(10);
         KartRentable inexistente = flota.buscarPorNumero(11);
 
@@ -54,14 +54,14 @@ public class FlotaKartsTest {
     }
 
     /**
-     * Comprueba que los números registrados sean únicos.
+     * Comprueba que los numeros registrados sean unicos.
      */
     @Test
     public void debeRechazarNumeroDuplicado() {
-        // Given: una flota que ya contiene el número 20
+        // Given: una flota que ya contiene el numero 20
         flota.agregarKart(new KartInfantil(20));
 
-        // When: se agrega otro kart con el mismo número
+        // When: se agrega otro kart con el mismo numero
         // Then: se rechaza el duplicado
         assertThrows(IllegalStateException.class,
                 () -> flota.agregarKart(new KartDoble(20)));
@@ -117,17 +117,17 @@ public class FlotaKartsTest {
         // When: se consulta el estado del doble
         KartRentable encontrado = flota.buscarPorNumero(50);
 
-        // Then: la flota conserva la implementación sustituida
+        // Then: la flota conserva la implementacion sustituida
         assertEquals(doble, encontrado);
         assertEquals("Doble", encontrado.getTipo());
     }
 
     /**
-     * Comprueba que no se acepten karts nulos ni con número no positivo.
+     * Comprueba que no se acepten karts nulos ni con numero no positivo.
      */
     @Test
     public void debeRechazarKartNuloONumeroInvalido() {
-        // Given: un kart nulo y un doble con número cero
+        // Given: un kart nulo y un doble con numero cero
 
         // When y Then: ambos intentos son rechazados con IllegalArgumentException
         assertThrows(IllegalArgumentException.class,
@@ -137,11 +137,11 @@ public class FlotaKartsTest {
     }
 
     /**
-     * Comprueba que buscar por un número no positivo lance excepción.
+     * Comprueba que buscar por un numero no positivo lance excepcion.
      */
     @Test
     public void debeRechazarBusquedaConNumeroNoPositivo() {
-        // Given: números de búsqueda inválidos
+        // Given: numeros de busqueda invalidos
 
         // When y Then: cero y negativos lanzan IllegalArgumentException
         assertThrows(IllegalArgumentException.class,
@@ -151,7 +151,7 @@ public class FlotaKartsTest {
     }
 
     /**
-     * Doble de prueba que implementa el contrato público KartRentable.
+     * Doble de prueba que implementa el contrato publico KartRentable.
      */
     private static class KartRentableDoble implements KartRentable {
 
@@ -159,8 +159,8 @@ public class FlotaKartsTest {
         private boolean libre = true;
 
         /**
-         * Crea el doble con su número identificador.
-         * @param numero número del kart simulado
+         * Crea el doble con su numero identificador.
+         * @param numero numero del kart simulado
          */
         KartRentableDoble(int numero) {
             this.numero = numero;

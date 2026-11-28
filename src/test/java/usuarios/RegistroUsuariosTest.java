@@ -39,12 +39,12 @@ public class RegistroUsuariosTest {
     }
 
     /**
-     * Comprueba el registro y búsqueda usando un repositorio falso.
+     * Comprueba el registro y busqueda usando un repositorio falso.
      */
     @Test
     public void debeRegistrarClienteMedianteRepositorioDoble() {
         // Given: un socio y un repositorio falso sin clientes
-        Socio socio = new Socio("S-10", "María");
+        Socio socio = new Socio("S-10", "Maria");
 
         // When: se registra y busca por identificador
         registro.registrar(socio);
@@ -64,17 +64,17 @@ public class RegistroUsuariosTest {
         registro.registrar(new Visitante("V-20", "Pedro"));
 
         // When: se intenta registrar otro con el mismo ID
-        // Then: se rechaza como estado inválido
+        // Then: se rechaza como estado invalido
         assertThrows(IllegalStateException.class,
                 () -> registro.registrar(new Visitante("V-20", "Otro")));
     }
 
     /**
-     * Comprueba que una búsqueda inexistente no encuentre cliente.
+     * Comprueba que una busqueda inexistente no encuentre cliente.
      */
     @Test
     public void debeBuscarSinEncontrarClienteInexistente() {
-        // Given: un registro vacío
+        // Given: un registro vacio
 
         // When: se busca un identificador no registrado
         Cliente resultado = registro.buscarPorId("S-99");
@@ -100,13 +100,13 @@ public class RegistroUsuariosTest {
     }
 
     /**
-     * Comprueba las validaciones de parámetros nulos o vacíos en el registro.
+     * Comprueba las validaciones de parametros nulos o vacios en el registro.
      */
     @Test
     public void debeRechazarParametrosInvalidosEnRegistroYBusqueda() {
         // Given: entradas nulas o en blanco
 
-        // When y Then: constructor, alta y búsqueda rechazan datos inválidos
+        // When y Then: constructor, alta y busqueda rechazan datos invalidos
         assertThrows(IllegalArgumentException.class,
                 () -> new RegistroUsuarios(null));
         assertThrows(IllegalArgumentException.class,

@@ -11,10 +11,10 @@ public class KartInfantil extends Kart {
     private static final double TARIFA_POR_HORA = 200.0;
 
     /**
-     * Crea un kart infantil disponible con el número indicado.
+     * Crea un kart infantil disponible con el numero indicado.
      *
-     * @param numero número identificador del kart (debe ser mayor que cero)
-     * @throws IllegalArgumentException si el número es menor o igual a cero
+     * @param numero numero identificador del kart (debe ser mayor que cero)
+     * @throws IllegalArgumentException si el numero es menor o igual a cero
      */
     public KartInfantil(int numero) {
         super(numero);

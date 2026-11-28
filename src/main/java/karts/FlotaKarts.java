@@ -2,8 +2,8 @@ package karts;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Administra la colección de karts registrados en el establecimiento,
- * garantizando números únicos y copias defensivas en las consultas.
+ * Administra la coleccion de karts registrados en el establecimiento,
+ * garantizando numeros unicos y copias defensivas en las consultas.
  * 
  * @author ibane
  */
@@ -12,7 +12,7 @@ public class FlotaKarts {
     private final List<KartRentable> karts;
 
     /**
-     * Inicializa una flota de karts vacía.
+     * Inicializa una flota de karts vacia.
      */
     public FlotaKarts() {
         karts = new ArrayList<>();
@@ -20,34 +20,34 @@ public class FlotaKarts {
 
     /**
      * Agrega un kart a la flota verificando que no sea nulo, que tenga
-     * un número válido y que no exista otro kart con el mismo número.
+     * un numero valido y que no exista otro kart con el mismo numero.
      * @param kart kart a agregar a la flota
-     * @throws IllegalArgumentException si el kart es nulo o su número es inválido
-     * @throws IllegalStateException    si ya existe un kart con el mismo número
+     * @throws IllegalArgumentException si el kart es nulo o su numero es invalido
+     * @throws IllegalStateException    si ya existe un kart con el mismo numero
      */
     public void agregarKart(KartRentable kart) {
         if (kart == null) {
             throw new IllegalArgumentException("El kart a agregar a la flota no puede ser nulo.");
         }
         if (kart.getNumero() <= 0) {
-            throw new IllegalArgumentException("El kart debe tener un número identificador positivo.");
+            throw new IllegalArgumentException("El kart debe tener un numero identificador positivo.");
         }
         if (existeNumero(kart.getNumero())) {
-            throw new IllegalStateException("Ya existe un kart registrado con el número: " + kart.getNumero());
+            throw new IllegalStateException("Ya existe un kart registrado con el numero: " + kart.getNumero());
         }
         karts.add(kart);
     }
 
     /**
-     * Busca un kart en la flota a partir de su número identificador.
-     * @param numero número del kart a buscar
-     * @return el kart encontrado o {@code null} si no está en la flota
-     * @throws IllegalArgumentException si el número es menor o igual a cero
+     * Busca un kart en la flota a partir de su numero identificador.
+     * @param numero numero del kart a buscar
+     * @return el kart encontrado o {@code null} si no esta en la flota
+     * @throws IllegalArgumentException si el numero es menor o igual a cero
      */
     public KartRentable buscarPorNumero(int numero) {
         if (numero <= 0) {
             throw new IllegalArgumentException(
-                    "El número de búsqueda debe ser un entero positivo.");
+                    "El numero de busqueda debe ser un entero positivo.");
         }
         for (KartRentable kart : karts) {
             if (kart.getNumero() == numero) {
@@ -66,7 +66,7 @@ public class FlotaKarts {
     }
 
     /**
-     * Devuelve una nueva lista únicamente con los karts que actualmente
+     * Devuelve una nueva lista unicamente con los karts que actualmente
      * se encuentran libres.
      * @return lista de karts disponibles para renta
      */
@@ -81,10 +81,10 @@ public class FlotaKarts {
     }
 
     /**
-     * Verifica si ya existe en la flota un kart con el número especificado.
+     * Verifica si ya existe en la flota un kart con el numero especificado.
      *
-     * @param numero número identificador a comprobar
-     * @return {@code true} si ya está registrado; {@code false} en caso contrario
+     * @param numero numero identificador a comprobar
+     * @return {@code true} si ya esta registrado; {@code false} en caso contrario
      */
     private boolean existeNumero(int numero) {
         for (KartRentable kart : karts) {

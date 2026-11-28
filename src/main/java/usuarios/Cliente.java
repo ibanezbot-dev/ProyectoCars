@@ -1,13 +1,13 @@
 package usuarios;
 /**
- * Contrato público para los clientes que pueden realizar rentas de go karts.
+ * Contrato publico para los clientes que pueden realizar rentas de go karts.
  * 
  * @author ibane
  */
 public interface Cliente {
     
     /**
-     * Obtiene el identificador único del cliente.
+     * Obtiene el identificador unico del cliente.
      * @return identificador del cliente
      */
     String getId();
@@ -19,8 +19,8 @@ public interface Cliente {
     String getNombre();
 
     /**
-     * Obtiene la cantidad máxima de horas permitidas por kart para este cliente.
-     * @return máximo de horas permitidas
+     * Obtiene la cantidad maxima de horas permitidas por kart para este cliente.
+     * @return maximo de horas permitidas
      */
     int getMaxHoras();
 

@@ -7,7 +7,7 @@ import java.util.Set;
 import karts.KartRentable;
 import usuarios.Cliente;
 /**
- * Coordina la creación, validación, finalización y conteo histórico de las
+ * Coordina la creacion, validacion, finalizacion y conteo historico de las
  * rentas de go karts.
  * 
  * @author ibane
@@ -21,7 +21,7 @@ public class GestorRentas {
     private int totalRentas;
 
     /**
-     * Inicializa un gestor de rentas vacío con el contador en cero.
+     * Inicializa un gestor de rentas vacio con el contador en cero.
      */
     public GestorRentas() {
         rentas = new ArrayList<>();
@@ -35,9 +35,9 @@ public class GestorRentas {
      * @param kartsConHoras mapa con entre 1 y 3 karts y sus horas solicitadas
      * @return la nueva renta creada y registrada
      * @throws IllegalArgumentException si el cliente, el mapa, la cantidad de
-     *                                  karts, los números repetidos o las horas
-     *                                  son inválidos
-     * @throws IllegalStateException    si alguno de los karts ya está en uso
+     *                                  karts, los numeros repetidos o las horas
+     *                                  son invalidos
+     * @throws IllegalStateException    si alguno de los karts ya esta en uso
      */
     public Renta crearRenta(Cliente cliente,
             Map<KartRentable, Integer> kartsConHoras) {
@@ -54,25 +54,25 @@ public class GestorRentas {
     }
 
     /**
-     * Finaliza una renta existente buscándola por su número consecutivo y
+     * Finaliza una renta existente buscandola por su numero consecutivo y
      * libera sus karts.
-     * @param numeroRenta número identificador de la renta a finalizar
-     * @throws IllegalArgumentException si el número no es positivo o no existe
-     * @throws IllegalStateException    si la renta ya había sido finalizada
+     * @param numeroRenta numero identificador de la renta a finalizar
+     * @throws IllegalArgumentException si el numero no es positivo o no existe
+     * @throws IllegalStateException    si la renta ya habia sido finalizada
      */
     public void finalizarRenta(int numeroRenta) {
         if (numeroRenta <= 0) {
-            throw new IllegalArgumentException("El número de renta debe ser un entero positivo.");
+            throw new IllegalArgumentException("El numero de renta debe ser un entero positivo.");
         }
         Renta rentaEncontrada = buscarRentaPorNumero(numeroRenta);
         if (rentaEncontrada == null) {
-            throw new IllegalArgumentException("No existe ninguna renta registrada con el número: "+ numeroRenta);
+            throw new IllegalArgumentException("No existe ninguna renta registrada con el numero: "+ numeroRenta);
         }
         rentaEncontrada.finalizar();
     }
 
     /**
-     * Obtiene el total histórico de rentas realizadas en el sistema.
+     * Obtiene el total historico de rentas realizadas en el sistema.
      * @return contador total de rentas
      */
     public int getTotalRentas() {
@@ -101,12 +101,12 @@ public class GestorRentas {
 
     /**
      * Valida la cantidad de karts, sus horas permitidas para el cliente, la
-     * ausencia de números repetidos y que todos los karts estén libres.
+     * ausencia de numeros repetidos y que todos los karts esten libres.
      *
      * @param cliente       cliente titular de la renta
      * @param kartsConHoras mapa de karts seleccionados y sus horas solicitadas
-     * @throws IllegalArgumentException si la selección o las horas incumplen las reglas
-     * @throws IllegalStateException    si algún kart seleccionado ya está en uso
+     * @throws IllegalArgumentException si la seleccion o las horas incumplen las reglas
+     * @throws IllegalStateException    si algun kart seleccionado ya esta en uso
      */
     private void validarKartsYHoras(Cliente cliente, Map<KartRentable, Integer> kartsConHoras) {
         if (kartsConHoras == null || kartsConHoras.size() < MIN_KARTS || kartsConHoras.size() > MAX_KARTS) {
@@ -121,27 +121,27 @@ public class GestorRentas {
             Integer horas = entrada.getValue();
 
             if (kart == null) {
-                throw new IllegalArgumentException("Ningún kart dentro de la renta puede ser nulo.");
+                throw new IllegalArgumentException("Ningun kart dentro de la renta puede ser nulo.");
             }
             if (horas == null) {
-                throw new IllegalArgumentException("Las horas para el kart número " + kart.getNumero() + " no pueden ser nulas.");
+                throw new IllegalArgumentException("Las horas para el kart numero " + kart.getNumero() + " no pueden ser nulas.");
             }
             if (horas < MIN_HORAS || horas > maxHorasCliente) {
-                throw new IllegalArgumentException("Las horas para el kart número " + kart.getNumero() + " deben estar entre " + MIN_HORAS + " y " + maxHorasCliente + " para este cliente.");
+                throw new IllegalArgumentException("Las horas para el kart numero " + kart.getNumero() + " deben estar entre " + MIN_HORAS + " y " + maxHorasCliente + " para este cliente.");
             }
             if (!numerosVistos.add(kart.getNumero())) {
-                throw new IllegalArgumentException("No se permite incluir dos karts con el mismo número: " + kart.getNumero());
+                throw new IllegalArgumentException("No se permite incluir dos karts con el mismo numero: " + kart.getNumero());
             }
             if (!kart.estaLibre()) {
-                throw new IllegalStateException("El kart número " + kart.getNumero() + " ya se encuentra en uso y no puede rentarse.");
+                throw new IllegalStateException("El kart numero " + kart.getNumero() + " ya se encuentra en uso y no puede rentarse.");
             }
         }
     }
 
     /**
-     * Busca una renta registrada a partir de su número consecutivo.
+     * Busca una renta registrada a partir de su numero consecutivo.
      *
-     * @param numeroRenta número identificador de la renta
+     * @param numeroRenta numero identificador de la renta
      * @return la renta encontrada o {@code null} si no existe
      */
     private Renta buscarRentaPorNumero(int numeroRenta) {

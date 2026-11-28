@@ -19,24 +19,24 @@ import usuarios.Visitante;
 
 /**
  * Clase principal de consola para probar el funcionamiento del sistema de
- * renta de go karts tanto de manera interactiva como mediante una demostración
- * automática.
+ * renta de go karts tanto de manera interactiva como mediante una demostracion
+ * automatica.
  *
  * @author ibane
  */
 public class Main {
 
     /**
-     * Constructor privado para evitar instanciación de la clase utilitaria de entrada.
+     * Constructor privado para evitar instanciacion de la clase utilitaria de entrada.
      */
     private Main() {
     }
 
     /**
-     * Punto de entrada de la aplicación de consola.
+     * Punto de entrada de la aplicacion de consola.
      *
-     * @param args argumentos de línea de comandos; si se pasa {@code --demo},
-     *             ejecuta únicamente la demostración automática y finaliza
+     * @param args argumentos de linea de comandos; si se pasa {@code --demo},
+     *             ejecuta unicamente la demostracion automatica y finaliza
      */
     public static void main(String[] args) {
         FlotaKarts flota = new FlotaKarts();
@@ -97,7 +97,7 @@ public class Main {
                         System.out.println("Saliendo del sistema...");
                         break;
                     default:
-                        System.out.println("Opción no válida. Selecciona una opción del menú.");
+                        System.out.println("Opcion no valida. Selecciona una opcion del menu.");
                         break;
                 }
             } catch (IllegalArgumentException | IllegalStateException e) {
@@ -120,16 +120,16 @@ public class Main {
         flota.agregarKart(new KartDoble(5));
         flota.agregarKart(new KartDoble(6));
 
-        registro.registrar(new Socio("S-1", "Ana López"));
-        registro.registrar(new Visitante("V-1", "Luis Pérez"));
+        registro.registrar(new Socio("S-1", "Ana Lopez"));
+        registro.registrar(new Visitante("V-1", "Luis Perez"));
     }
 
     /**
-     * Imprime el menú principal de opciones disponibles.
+     * Imprime el menu principal de opciones disponibles.
      */
     private static void mostrarMenu() {
         System.out.println();
-        System.out.println("--------------- MENÚ ---------------");
+        System.out.println("--------------- MENU ---------------");
         System.out.println("1. Ver flota de karts (todos y disponibles)");
         System.out.println("2. Agregar kart a la flota");
         System.out.println("3. Registrar cliente (Socio / Visitante)");
@@ -137,9 +137,9 @@ public class Main {
         System.out.println("5. Crear nueva renta y generar recibo");
         System.out.println("6. Finalizar renta activa");
         System.out.println("7. Ver historial de rentas");
-        System.out.println("8. Ejecutar demostración automática");
+        System.out.println("8. Ejecutar demostracion automatica");
         System.out.println("0. Salir");
-        System.out.print("Selecciona una opción: ");
+        System.out.print("Selecciona una opcion: ");
     }
 
     /**
@@ -168,11 +168,11 @@ public class Main {
     /**
      * Solicita datos por consola y agrega un nuevo kart a la flota.
      *
-     * @param scanner lector de entrada estándar
-     * @param flota   flota de karts donde se agregará el nuevo kart
+     * @param scanner lector de entrada estandar
+     * @param flota   flota de karts donde se agregara el nuevo kart
      */
     private static void agregarKart(Scanner scanner, FlotaKarts flota) {
-        System.out.print("Número del nuevo kart: ");
+        System.out.print("Numero del nuevo kart: ");
         int numero = leerEntero(scanner);
 
         System.out.println("Tipo de kart: 1) Infantil ($200/h)  2) Adulto ($300/h)  3) Doble ($400/h)");
@@ -191,7 +191,7 @@ public class Main {
                 nuevoKart = new KartDoble(numero);
                 break;
             default:
-                throw new IllegalArgumentException("Tipo de kart no válido. Usa 1, 2 o 3.");
+                throw new IllegalArgumentException("Tipo de kart no valido. Usa 1, 2 o 3.");
         }
 
         flota.agregarKart(nuevoKart);
@@ -201,11 +201,11 @@ public class Main {
     /**
      * Solicita datos por consola y registra un nuevo socio o visitante.
      *
-     * @param scanner  lector de entrada estándar
+     * @param scanner  lector de entrada estandar
      * @param registro registro de usuarios
      */
     private static void registrarCliente(Scanner scanner, RegistroUsuarios registro) {
-        System.out.println("Tipo de cliente: 1) Socio (máx. 2 h, 10% desc.)  2) Visitante (máx. 1 h, 0% desc.)");
+        System.out.println("Tipo de cliente: 1) Socio (max. 2 h, 10% desc.)  2) Visitante (max. 1 h, 0% desc.)");
         System.out.print("Elige tipo: ");
         String tipo = scanner.nextLine().trim();
 
@@ -220,7 +220,7 @@ public class Main {
         } else if ("2".equals(tipo)) {
             cliente = new Visitante(id, nombre);
         } else {
-            throw new IllegalArgumentException("Tipo de cliente no válido. Usa 1 o 2.");
+            throw new IllegalArgumentException("Tipo de cliente no valido. Usa 1 o 2.");
         }
 
         registro.registrar(cliente);
@@ -240,7 +240,7 @@ public class Main {
             return;
         }
         for (Cliente cliente : clientes) {
-            System.out.printf("ID: %-6s | Nombre: %-18s | Máx. horas: %d | Descuento: %.0f%%%n",
+            System.out.printf("ID: %-6s | Nombre: %-18s | Max. horas: %d | Descuento: %.0f%%%n",
                     cliente.getId(),
                     cliente.getNombre(),
                     cliente.getMaxHoras(),
@@ -251,7 +251,7 @@ public class Main {
     /**
      * Crea una renta interactiva solicitando cliente, cantidad de karts y horas.
      *
-     * @param scanner  lector de entrada estándar
+     * @param scanner  lector de entrada estandar
      * @param flota    flota de karts
      * @param registro registro de clientes
      * @param gestor   gestor de rentas
@@ -263,11 +263,11 @@ public class Main {
         String idCliente = scanner.nextLine();
         Cliente cliente = registro.buscarPorId(idCliente);
         if (cliente == null) {
-            throw new IllegalArgumentException("No se encontró un cliente registrado con ID: " + idCliente.trim());
+            throw new IllegalArgumentException("No se encontro un cliente registrado con ID: " + idCliente.trim());
         }
 
         mostrarFlota(flota);
-        System.out.print("¿Cuántos karts deseas rentar? (1 a 3): ");
+        System.out.print("Cuantos karts deseas rentar? (1 a 3): ");
         int cantidad = leerEntero(scanner);
         if (cantidad < 1 || cantidad > 3) {
             throw new IllegalArgumentException("La cantidad de karts debe estar entre 1 y 3.");
@@ -275,16 +275,16 @@ public class Main {
 
         Map<KartRentable, Integer> seleccion = new LinkedHashMap<>();
         for (int i = 1; i <= cantidad; i++) {
-            System.out.print("Número del kart #" + i + ": ");
+            System.out.print("Numero del kart #" + i + ": ");
             int numeroKart = leerEntero(scanner);
             KartRentable kart = flota.buscarPorNumero(numeroKart);
             if (kart == null) {
-                throw new IllegalArgumentException("No existe un kart con el número: " + numeroKart);
+                throw new IllegalArgumentException("No existe un kart con el numero: " + numeroKart);
             }
             if (seleccion.containsKey(kart)) {
                 throw new IllegalArgumentException("El kart #" + numeroKart + " ya fue agregado a esta renta.");
             }
-            System.out.print("Horas para el kart #" + numeroKart + " (máx. " + cliente.getMaxHoras() + "): ");
+            System.out.print("Horas para el kart #" + numeroKart + " (max. " + cliente.getMaxHoras() + "): ");
             int horas = leerEntero(scanner);
             seleccion.put(kart, horas);
         }
@@ -295,14 +295,14 @@ public class Main {
     }
 
     /**
-     * Solicita el número de una renta activa, la finaliza y muestra el recibo actualizado.
+     * Solicita el numero de una renta activa, la finaliza y muestra el recibo actualizado.
      *
-     * @param scanner lector de entrada estándar
+     * @param scanner lector de entrada estandar
      * @param gestor  gestor de rentas
      * @param recibo  generador de recibos
      */
     private static void finalizarRenta(Scanner scanner, GestorRentas gestor, Recibo recibo) {
-        System.out.print("Número de renta a finalizar: ");
+        System.out.print("Numero de renta a finalizar: ");
         int numeroRenta = leerEntero(scanner);
         gestor.finalizarRenta(numeroRenta);
 
@@ -326,7 +326,7 @@ public class Main {
         List<Renta> rentas = gestor.listarRentas();
         System.out.println("\n--- Historial de rentas (Total: " + gestor.getTotalRentas() + ") ---");
         if (rentas.isEmpty()) {
-            System.out.println("Aún no se han realizado rentas.");
+            System.out.println("Aun no se han realizado rentas.");
             return;
         }
         for (Renta renta : rentas) {
@@ -336,14 +336,14 @@ public class Main {
     }
 
     /**
-     * Ejecuta una demostración autocontenida del flujo completo del sistema sin
-     * alterar el estado del menú interactivo.
+     * Ejecuta una demostracion autocontenida del flujo completo del sistema sin
+     * alterar el estado del menu interactivo.
      *
      * @param recibo generador de recibos
      */
     private static void ejecutarDemostracionAutomatica(Recibo recibo) {
         System.out.println("\n==========================================");
-        System.out.println("       DEMOSTRACIÓN AUTOMÁTICA");
+        System.out.println("       DEMOSTRACION AUTOMATICA");
         System.out.println("==========================================");
 
         FlotaKarts flotaDemo = new FlotaKarts();
@@ -357,7 +357,7 @@ public class Main {
         flotaDemo.agregarKart(k2);
         flotaDemo.agregarKart(k3);
 
-        Cliente socio = new Socio("S-DEMO", "Sofía Ramírez");
+        Cliente socio = new Socio("S-DEMO", "Sofia Ramirez");
         Cliente visitante = new Visitante("V-DEMO", "Carlos Ruiz");
         registroDemo.registrar(socio);
         registroDemo.registrar(visitante);
@@ -379,7 +379,7 @@ public class Main {
         System.out.println(recibo.generar(rentaVisitante));
         System.out.println("\n   Karts disponibles ahora: " + flotaDemo.listarDisponibles().size());
 
-        System.out.println("\n4) Prueba de validación (intentar rentar un kart ocupado):");
+        System.out.println("\n4) Prueba de validacion (intentar rentar un kart ocupado):");
         try {
             Map<KartRentable, Integer> intentoInvalido = new LinkedHashMap<>();
             intentoInvalido.put(k1, 1);
@@ -392,23 +392,23 @@ public class Main {
         System.out.println("\n5) Renta #" + rentaSocio.getNumeroRenta() + " finalizada:");
         System.out.println(recibo.generar(rentaSocio));
         System.out.println("\n   Karts disponibles tras liberar: " + flotaDemo.listarDisponibles().size());
-        System.out.println("   Total histórico de rentas: " + gestorDemo.getTotalRentas());
+        System.out.println("   Total historico de rentas: " + gestorDemo.getTotalRentas());
         System.out.println("==========================================");
     }
 
     /**
-     * Lee un número entero desde la entrada estándar validando el formato.
+     * Lee un numero entero desde la entrada estandar validando el formato.
      *
-     * @param scanner lector de entrada estándar
+     * @param scanner lector de entrada estandar
      * @return valor entero ingresado por el usuario
-     * @throws IllegalArgumentException si el texto ingresado no es un entero válido
+     * @throws IllegalArgumentException si el texto ingresado no es un entero valido
      */
     private static int leerEntero(Scanner scanner) {
         String entrada = scanner.nextLine().trim();
         try {
             return Integer.parseInt(entrada);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Debes ingresar un número entero válido.");
+            throw new IllegalArgumentException("Debes ingresar un numero entero valido.");
         }
     }
 }
