@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Pruebas unitarias de la creación y finalización de rentas.
+ * Pruebas unitarias de la creacion y finalizacion de rentas.
  *
  * @author marcial
  */
@@ -45,7 +45,7 @@ public class GestorRentasTest {
     }
 
     /**
-     * Comprueba la creación de una renta y el descuento de socio.
+     * Comprueba la creacion de una renta y el descuento de socio.
      */
     @Test
     public void debeCrearRentaDeSocioConDescuento() {
@@ -67,7 +67,7 @@ public class GestorRentasTest {
     }
 
     /**
-     * Comprueba que el visitante tenga máximo una hora y sin descuento.
+     * Comprueba que el visitante tenga maximo una hora y sin descuento.
      */
     @Test
     public void debeCrearRentaDeVisitanteSinDescuento() {
@@ -104,20 +104,20 @@ public class GestorRentasTest {
     }
 
     /**
-     * Comprueba que se respeten máximo de karts y máximo de horas.
+     * Comprueba que se respeten maximo de karts y maximo de horas.
      */
     @Test
     public void debeRechazarSeleccionInvalida() {
-        // Given: un visitante con una selección que excede sus reglas
+        // Given: un visitante con una seleccion que excede sus reglas
         Map<KartRentable, Integer> demasiadasHoras = new HashMap<>();
         demasiadasHoras.put(new KartAdulto(4), 2);
 
-        // When y Then: dos horas exceden el máximo del visitante
+        // When y Then: dos horas exceden el maximo del visitante
         assertThrows(IllegalArgumentException.class,
                 () -> gestor.crearRenta(new Visitante("V-3", "Leo"),
                         demasiadasHoras));
 
-        // Given: cuatro karts, fuera del máximo permitido
+        // Given: cuatro karts, fuera del maximo permitido
         Map<KartRentable, Integer> demasiadosKarts = new HashMap<>();
         demasiadosKarts.put(new KartAdulto(5), 1);
         demasiadosKarts.put(new KartAdulto(6), 1);
@@ -151,7 +151,7 @@ public class GestorRentasTest {
     }
 
     /**
-     * Comprueba que el gestor use la abstracción Cliente mediante un doble.
+     * Comprueba que el gestor use la abstraccion Cliente mediante un doble.
      */
     @Test
     public void debeUsarDobleDeCliente() {
@@ -170,7 +170,7 @@ public class GestorRentasTest {
     }
 
     /**
-     * Comprueba la creación y finalización de una renta con múltiples karts.
+     * Comprueba la creacion y finalizacion de una renta con multiples karts.
      */
     @Test
     public void debeCrearYFinalizarRentaConMultiplesKarts() {
@@ -187,7 +187,7 @@ public class GestorRentasTest {
         // When: se crea la renta
         Renta renta = gestor.crearRenta(socio, seleccion);
 
-        // Then: el cálculo suma todos los karts (400 + 300 + 800 = 1500) y los ocupa
+        // Then: el calculo suma todos los karts (400 + 300 + 800 = 1500) y los ocupa
         assertEquals(3, renta.getDetalles().size());
         assertEquals(1500.0, renta.calcularSubtotal(), 0.001);
         assertEquals(150.0, renta.calcularDescuento(), 0.001);
@@ -206,12 +206,12 @@ public class GestorRentasTest {
     }
 
     /**
-     * Comprueba el rechazo de parámetros nulos, selección vacía, horas inválidas y karts con número repetido.
+     * Comprueba el rechazo de parametros nulos, seleccion vacia, horas invalidas y karts con numero repetido.
      */
     @Test
     public void debeRechazarParametrosInvalidosAlCrearRenta() {
-        // Given: selecciones y parámetros con distintos tipos de error
-        Socio socio = new Socio("S-7", "Raúl");
+        // Given: selecciones y parametros con distintos tipos de error
+        Socio socio = new Socio("S-7", "Raul");
         Map<KartRentable, Integer> valida = new HashMap<>();
         valida.put(new KartAdulto(14), 1);
 
@@ -230,7 +230,7 @@ public class GestorRentasTest {
         conNumeroRepetido.put(new KartAdulto(17), 1);
         conNumeroRepetido.put(new KartInfantil(17), 1);
 
-        // When y Then: cada caso inválido lanza IllegalArgumentException sin alterar el contador
+        // When y Then: cada caso invalido lanza IllegalArgumentException sin alterar el contador
         assertThrows(IllegalArgumentException.class,
                 () -> gestor.crearRenta(null, valida));
         assertThrows(IllegalArgumentException.class,
@@ -249,7 +249,7 @@ public class GestorRentasTest {
     }
 
     /**
-     * Comprueba los errores al finalizar una renta inexistente, con número inválido o ya finalizada.
+     * Comprueba los errores al finalizar una renta inexistente, con numero invalido o ya finalizada.
      */
     @Test
     public void debeRechazarFinalizacionInvalidaORepetida() {
@@ -259,7 +259,7 @@ public class GestorRentasTest {
         Renta renta = gestor.crearRenta(new Visitante("V-4", "Nora"), seleccion);
         gestor.finalizarRenta(renta.getNumeroRenta());
 
-        // When y Then: números inválidos o inexistentes lanzan IllegalArgumentException
+        // When y Then: numeros invalidos o inexistentes lanzan IllegalArgumentException
         assertThrows(IllegalArgumentException.class,
                 () -> gestor.finalizarRenta(0));
         assertThrows(IllegalArgumentException.class,

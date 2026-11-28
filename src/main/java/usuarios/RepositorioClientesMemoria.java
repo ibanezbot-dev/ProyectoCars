@@ -2,7 +2,7 @@ package usuarios;
 import java.util.List;
 import java.util.ArrayList;
 /**
- * Implementación en memoria de {@code RepositorioClientes} cuyo constructor
+ * Implementacion en memoria de {@code RepositorioClientes} cuyo constructor
  * tiene visibilidad restringida al paquete {@code usuarios}.
  *
  * @author ibane
@@ -11,14 +11,14 @@ public class RepositorioClientesMemoria implements RepositorioClientes {
     private final List<Cliente> clientes;
 
     /**
-     * Inicializa el repositorio con una colección vacía en memoria.
+     * Inicializa el repositorio con una coleccion vacia en memoria.
      */
     RepositorioClientesMemoria() {
         clientes = new ArrayList<>();
     }
 
     /**
-     * Almacena un cliente en la colección en memoria.
+     * Almacena un cliente en la coleccion en memoria.
      *
      * @param cliente cliente a guardar
      * @throws IllegalArgumentException si el cliente es nulo
@@ -33,10 +33,10 @@ public class RepositorioClientesMemoria implements RepositorioClientes {
     }
 
     /**
-     * Busca un cliente por su identificador aplicando normalización de espacios.
+     * Busca un cliente por su identificador aplicando normalizacion de espacios.
      *
      * @param id identificador del cliente a buscar
-     * @return el cliente encontrado o {@code null} si el ID es nulo, está vacío
+     * @return el cliente encontrado o {@code null} si el ID es nulo, esta vacio
      *         o no existe en el repositorio
      */
     @Override

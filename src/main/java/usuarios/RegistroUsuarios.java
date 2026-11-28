@@ -18,9 +18,9 @@ public class RegistroUsuarios {
     }
 
     /**
-     * Constructor con acceso de paquete para inyectar un repositorio específico
+     * Constructor con acceso de paquete para inyectar un repositorio especifico
      * o un doble de prueba en JUnit.
-     * @param repositorio implementación del repositorio de clientes
+     * @param repositorio implementacion del repositorio de clientes
      * @throws IllegalArgumentException si el repositorio es nulo
      */
     RegistroUsuarios(RepositorioClientes repositorio) {
@@ -34,7 +34,7 @@ public class RegistroUsuarios {
      * Registra un nuevo cliente verificando que no sea nulo y que su ID
      * no se encuentre previamente registrado.
      * @param cliente cliente a registrar
-     * @throws IllegalArgumentException si el cliente es nulo o su ID es inválido
+     * @throws IllegalArgumentException si el cliente es nulo o su ID es invalido
      * @throws IllegalStateException    si ya existe un cliente con el mismo ID
      */
     public void registrar(Cliente cliente) {
@@ -43,7 +43,7 @@ public class RegistroUsuarios {
         }
         String id = cliente.getId();
         if (id == null || id.trim().isEmpty()) {
-            throw new IllegalArgumentException("El cliente debe tener un ID válido.");
+            throw new IllegalArgumentException("El cliente debe tener un ID valido.");
         }
         String idNormalizado = id.trim();
         if (repositorio.existe(idNormalizado)) {
@@ -55,12 +55,12 @@ public class RegistroUsuarios {
     /**
      * Busca un cliente registrado a partir de su identificador.
      * @param id identificador del cliente a buscar
-     * @return el cliente encontrado o {@code null} si no está registrado
-     * @throws IllegalArgumentException si el ID es nulo o está vacío
+     * @return el cliente encontrado o {@code null} si no esta registrado
+     * @throws IllegalArgumentException si el ID es nulo o esta vacio
      */
     public Cliente buscarPorId(String id) {
         if (id == null || id.trim().isEmpty()) {
-            throw new IllegalArgumentException("El ID de búsqueda no puede ser nulo ni estar vacío.");
+            throw new IllegalArgumentException("El ID de busqueda no puede ser nulo ni estar vacio.");
         }
         return repositorio.buscar(id.trim());
     }

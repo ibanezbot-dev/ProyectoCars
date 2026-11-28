@@ -27,7 +27,7 @@ public class UsuarioTest {
     }
 
     /**
-     * Libera las referencias de cliente después de cada prueba.
+     * Libera las referencias de cliente despues de cada prueba.
      */
     @After
     public void tearDown() {
@@ -36,13 +36,13 @@ public class UsuarioTest {
     }
 
     /**
-     * Comprueba los límites de horas de socios y visitantes.
+     * Comprueba los limites de horas de socios y visitantes.
      */
     @Test
     public void debeAplicarLimitesDeHorasPorTipoCliente() {
         // Given: un socio y un visitante
 
-        // When: se consultan sus máximos
+        // When: se consultan sus maximos
         int maximoSocio = socio.getMaxHoras();
         int maximoVisitante = visitante.getMaxHoras();
 
@@ -86,7 +86,7 @@ public class UsuarioTest {
      */
     @Test
     public void debeRechazarSubtotalNegativoYDatosVacios() {
-        // Given: datos inválidos para usuario y descuento
+        // Given: datos invalidos para usuario y descuento
 
         // When y Then: ambos casos deben lanzar excepciones claras
         assertThrows(IllegalArgumentException.class,

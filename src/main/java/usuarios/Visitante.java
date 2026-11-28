@@ -1,6 +1,6 @@
 package usuarios;
 /**
- * Representa a un cliente visitante sin membresía.
+ * Representa a un cliente visitante sin membresia.
  * Puede rentar hasta 1 hora por kart y no recibe descuento.
  * 
  * @author ibane
@@ -13,16 +13,16 @@ public class Visitante extends Usuario {
     /**
      * Crea un nuevo visitante con su identificador y nombre.
      *
-     * @param id     identificador único del visitante
+     * @param id     identificador unico del visitante
      * @param nombre nombre del visitante
-     * @throws IllegalArgumentException si el id o el nombre son nulos o están en blanco
+     * @throws IllegalArgumentException si el id o el nombre son nulos o estan en blanco
      */
     public Visitante(String id, String nombre) {
         super(id, nombre);
     }
 
     /**
-     * Devuelve el máximo de horas por kart permitido para un visitante.
+     * Devuelve el maximo de horas por kart permitido para un visitante.
      *
      * @return {@code 1}
      */

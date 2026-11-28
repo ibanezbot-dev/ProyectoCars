@@ -6,7 +6,7 @@ import karts.KartRentable;
 import usuarios.Cliente;
 /**
  * Representa una renta de go karts realizada por un cliente. Compone sus
- * propios objetos {@link DetalleRenta} y delega el cálculo de descuento
+ * propios objetos {@link DetalleRenta} y delega el calculo de descuento
  * al polimorfismo de {@link Cliente}.
  *
  * @author ibane
@@ -20,16 +20,16 @@ public class Renta {
 
     /**
      * Construye una renta activa con sus detalles correspondientes. El acceso
-     * de paquete asegura que las rentas se creen a través de {@link GestorRentas}.
-     * @param numeroRenta   número consecutivo asignado a la renta
+     * de paquete asegura que las rentas se creen a traves de {@link GestorRentas}.
+     * @param numeroRenta   numero consecutivo asignado a la renta
      * @param cliente       cliente que contrata la renta
      * @param kartsConHoras mapa de karts y sus horas asignadas
-     * @throws IllegalArgumentException si algún parámetro es inválido o vacío
+     * @throws IllegalArgumentException si algun parametro es invalido o vacio
      */
     Renta(int numeroRenta, Cliente cliente,
             Map<KartRentable, Integer> kartsConHoras) {
         if (numeroRenta <= 0) {
-            throw new IllegalArgumentException("El número de renta debe ser un entero positivo.");
+            throw new IllegalArgumentException("El numero de renta debe ser un entero positivo.");
         }
         if (cliente == null) {
             throw new IllegalArgumentException("El cliente de la renta no puede ser nulo.");
@@ -51,8 +51,8 @@ public class Renta {
     }
 
     /**
-     * Obtiene el número identificador de la renta.
-     * @return número de renta
+     * Obtiene el numero identificador de la renta.
+     * @return numero de renta
      */
     public int getNumeroRenta() {
         return numeroRenta;
@@ -76,7 +76,7 @@ public class Renta {
 
     /**
      * Indica si la renta sigue en curso.
-     * @return {@code true} si está activa, {@code false} si ya finalizó
+     * @return {@code true} si esta activa, {@code false} si ya finalizo
      */
     public boolean estaActiva() {
         return activa;
@@ -96,7 +96,7 @@ public class Renta {
     }
 
     /**
-     * Calcula el monto de descuento aplicable según el tipo de cliente.
+     * Calcula el monto de descuento aplicable segun el tipo de cliente.
      * @return monto del descuento
      */
     public double calcularDescuento() {
@@ -118,7 +118,7 @@ public class Renta {
      */
     public void finalizar() {
         if (!activa) {
-            throw new IllegalStateException("La renta número " + numeroRenta + " ya fue finalizada.");
+            throw new IllegalStateException("La renta numero " + numeroRenta + " ya fue finalizada.");
         }
         for (DetalleRenta detalle : detalles) {
             detalle.getKart().liberar();

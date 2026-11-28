@@ -1,9 +1,9 @@
 package rentas;
 import karts.KartRentable;
 /**
- * Representa la asignación de un kart específico y su cantidad de horas dentro
+ * Representa la asignacion de un kart especifico y su cantidad de horas dentro
  * de una renta. Su constructor es de acceso de paquete para garantizar la
- * composición con {@link Renta}.
+ * composicion con {@link Renta}.
  * 
  * @author ibane
  */

@@ -1,5 +1,5 @@
 /**
- * Modelos de go karts, sus tarifas por tipo y la administración de la flota
+ * Modelos de go karts, sus tarifas por tipo y la administracion de la flota
  * disponible para renta.
  */
 package karts;

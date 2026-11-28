@@ -3,7 +3,7 @@ import java.util.Locale;
 import karts.KartRentable;
 import usuarios.Cliente;
 /**
- * Genera la representación textual del comprobante de una renta sin realizar
+ * Genera la representacion textual del comprobante de una renta sin realizar
  * impresiones directas en consola.
  * 
  * @author ibane
@@ -19,7 +19,7 @@ public class Recibo {
     /**
      * Construye el texto completo del recibo correspondiente a la renta dada.
      *
-     * @param renta renta de la cual se generará el comprobante
+     * @param renta renta de la cual se generara el comprobante
      * @return texto formateado del recibo
      * @throws IllegalArgumentException si la renta es nula
      */

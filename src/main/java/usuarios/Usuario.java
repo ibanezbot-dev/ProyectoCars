@@ -12,17 +12,17 @@ public abstract class Usuario implements Cliente {
 
     /**
      * Construye un usuario validando que su identificador y nombre no sean
-     * nulos ni estén en blanco.
-     * @param id     identificador único del usuario
+     * nulos ni esten en blanco.
+     * @param id     identificador unico del usuario
      * @param nombre nombre del usuario
-     * @throws IllegalArgumentException si el id o el nombre son nulos o vacíos
+     * @throws IllegalArgumentException si el id o el nombre son nulos o vacios
      */
     protected Usuario(String id, String nombre) {
         if (id == null || id.trim().isEmpty()) {
-            throw new IllegalArgumentException("El ID del usuario no puede ser nulo ni estar vacío.");
+            throw new IllegalArgumentException("El ID del usuario no puede ser nulo ni estar vacio.");
         }
         if (nombre == null || nombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre del usuario no puede ser nulo ni estar vacío.");
+            throw new IllegalArgumentException("El nombre del usuario no puede ser nulo ni estar vacio.");
         }
         this.id = id.trim();
         this.nombre = nombre.trim();
@@ -31,7 +31,7 @@ public abstract class Usuario implements Cliente {
     /**
      * {@inheritDoc}
      *
-     * @return identificador único normalizado del usuario
+     * @return identificador unico normalizado del usuario
      */
     @Override
     public String getId() {
@@ -67,7 +67,7 @@ public abstract class Usuario implements Cliente {
     /**
      * {@inheritDoc}
      *
-     * @return cantidad máxima de horas permitidas por kart
+     * @return cantidad maxima de horas permitidas por kart
      */
     @Override
     public abstract int getMaxHoras();

@@ -1,6 +1,6 @@
 package usuarios;
 /**
- * Representa a un cliente con membresía de socio.
+ * Representa a un cliente con membresia de socio.
  * Puede rentar hasta 2 horas por kart y recibe un 10 % de descuento.
  *
  * @author ibane
@@ -13,16 +13,16 @@ public class Socio extends Usuario {
     /**
      * Crea un nuevo socio con su identificador y nombre.
      *
-     * @param id     identificador único del socio
+     * @param id     identificador unico del socio
      * @param nombre nombre del socio
-     * @throws IllegalArgumentException si el id o el nombre son nulos o están en blanco
+     * @throws IllegalArgumentException si el id o el nombre son nulos o estan en blanco
      */
     public Socio(String id, String nombre) {
         super(id, nombre);
     }
 
     /**
-     * Devuelve el máximo de horas por kart permitido para un socio.
+     * Devuelve el maximo de horas por kart permitido para un socio.
      *
      * @return {@code 2}
      */
